@@ -36,12 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'pagedown',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'blogyordan.apps.BlogyordanConfig',
     'blog_yordan',
-    'pagedown',
+
 ]
 
 MIDDLEWARE = [
@@ -122,17 +123,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, "static"), ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "blog_yordan/static")
-
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'samuelthejs',
@@ -141,6 +138,8 @@ CLOUDINARY_STORAGE = {
 }
 
 MEDIA_URL = '/media/'  # or any prefix you choose
+
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 import django_heroku
