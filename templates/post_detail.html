@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block head_title %}
+        {{ instance.title }} | {{ block.super }}
+    {% endblock head_title %}</title>
+
+{% block content %}
+
+<!-- NAV BAR STARTS-->
+
+          <div class="coredocs-section-title" style="background-size: auto">   <nav class="navbar navbar-light" style="background-color: #940e07; padding: 1%">
+  <h1 class="navbar-brand" style="color: white; padding-left: 1%">{{ title }}</h1>
+{#  <form class="form-inline" method="GET" action="">#}
+{#    <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search Posts" aria-label="Search" value="{{ request.GET.q }}">#}
+    <button class="btn btn-outline-success my-2 my-sm-0"  type="button" value="" >Home</button>
+{#  </form>#}
+</nav></div>
+
+    <!-- NAV BAR ENDS-->
+
+    <!-- CONTENTS STARTS-->
+<div class="container-fluid" style="background-color: darkcyan; padding: 5%">
+           <div class="container border border-success" style="background-color: #d7efef; padding: 3%; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.2)">
+
+  <div class="container">
+    <div class="col-sm-12 col-sm-offset-2">
+    {% if instance.image %}
+    <img src="{{ instance.image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 4px; padding-top: 2%"/><hr/>
+        {% endif %}
+    <h2 style="color: #940e07"><b> {{ title }} </b> <small>   {{ instance.timestamp }}</small></h2>
+    {% if instance.user.get_full_name %}
+<h6><b>Author: {{ instance.user.get_full_name }}</b></h6>
+    {% endif %}
+
+            <!-- FB SHARE AND LIKE STARTS HERE-->
+
+
+  <p>      <div class="fb-like" data-href="{{ request.build_absolute_uri}}"
+                data-layout="button_count" data-action="like" data-size="small"
+                data-show-faces="true" data-share="true"></div><hr/>
+        </p>
+        <!-- FB SHARE AND LIKE ENDS HERE-->
+
+
+
+        <!-- OTHER SOCIAL SHARE STARTS-->
+
+<p>
+    <a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri}}" style="color: #940e07">
+     Twitter |
+</a>
+    <a href='https://plus.google.com/share?url={{ request.build_absolute_uri}}' style="color: #940e07">Google+ |</a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri}}
+    &title=Be%20first%20%7C%20Join%20Swift%20for%20Entrepreneurs&summary=
+    Swift%20for%20Entrepreneurs%20is%20a%20project-based%20programming%20course%20for%20non-technical%20founders.
+    %20We'll%20learn%20how%20to%20build%20iOS%20apps%20from%20scratch%20using%20Apple's%20new%20programming%20language:
+    %20Swift.%20Be%20first%20and%20learn%20with%20me!&source={{ request.build_absolute_uri}}" style="color: #940e07">
+    Linkedin |
+</a>
+<a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri}}&title={{ share_string }}." style="color: #940e07"> Reddit</a><hr/>
+{##}
+</p>
+    <div class="row">
+        <div class="col-sm-12" style="font-size: 20px; color: black" >
+            <div class="content-markdown">  {{ instance.content | linebreaks }}</div>  <br/><hr/>
+
+    <div class="fb-comments" data-href="{{ request.build_absolute_uri}}" data-numposts="5"></div>
+                </div>
+               </div>
+            </div>
+         </div>
+     </div>
+</div>
+        <!-- SOCIAL SHARE ENDS-->
+
+        <!-- CONTENTS ENDS HERE-->
+
+
+        <!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5">
+
+    <div style="background-color: #08be00;">
+      <div class="container">
+
+        <!-- Grid row-->
+        <div class="row py-4 d-flex align-items-center">
+
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+              <h6 class="mb-0"><b>Get connected with us on social networks!</b></h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+            <!-- Facebook -->
+            <a class="fb-ic">
+              <i class="fab fa-facebook-f white-text mr-4"> </i>
+            </a>
+            <!-- Twitter -->
+            <a class="tw-ic">
+              <i class="fab fa-twitter white-text mr-4"> </i>
+            </a>
+            <!-- Google +-->
+            <a class="gplus-ic">
+              <i class="fab fa-google-plus-g white-text mr-4"> </i>
+            </a>
+            <!--Linkedin -->
+            <a class="li-ic">
+              <i class="fab fa-linkedin-in white-text mr-4"> </i>
+            </a>
+            <!--Instagram-->
+            <a class="ins-ic">
+              <i class="fab fa-instagram white-text"> </i>
+            </a>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row-->
+
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+      <!-- Grid row -->
+      <div class="row mt-3 dark-grey-text">
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+          <!-- Content -->
+          <h6 class="text-uppercase font-weight-bold">Yordan Co</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit.</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Products</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a class="dark-grey-text" href="#!">Things You Need</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Awesome</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">SS Awesome</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">SS Awesome</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a class="dark-grey-text" href="#!">Your Account</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Become an Affiliate</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Shipping Rates</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Help</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Contact</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <i class="fas fa-home mr-3"></i> Kijito, NY 10012, TZ</p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i> info@example.com</p>
+          <p>
+            <i class="fas fa-phone mr-3"></i> + 255 756 567 883</p>
+          <p>
+            <i class="fas fa-print mr-3"></i> + 255 625 457 894</p>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3"; style="background-color: #630400"><b>© 2019 Copyright:</b>
+      <a class="dark-grey-text" href="https://yordanschools.com/"> yordanschools.com</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+
+{% endblock content %}

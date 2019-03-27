@@ -1,0 +1,323 @@
+ {% extends "base.html" %}
+    {% block content %}
+
+                <!-- NAV BAR STARTS-->
+
+            <div class="coredocs-section-title" style="background-size: auto">   <nav class="navbar navbar-light" style="background-color: #940e07; padding: 1%">
+  <a class="h2" style="color: white"  >{{ title }}</a>
+  <form class="form-inline" method="GET" action="">
+    <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search Posts" aria-label="Search" value="{{ request.GET.q }}">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+  </form>
+</nav></div>
+                        <!-- NAV BAR ENDS-->
+
+                <!-- CONTENT LISTS STARTS-->
+
+<div class="container-fluid" style="padding: 5%;  background-color: darkcyan ">
+           <div class="container border border-success" style="background-color: #d7efef; padding: 2%; border-radius: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.2)">
+<div class="row">
+        <div class="col-md-8 ">
+
+
+{% for obj in object_list %}
+    <div class="row">
+    <div class="col-sm-12" >
+  <div class="thumbnail">
+
+      {% if obj.image %}
+          <img src="{{ obj.image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 4px"/><hr/>
+      {% endif %}
+
+      <div class="caption">
+    <h3 style="color: #940e07"><a href="{% url "detail" id=obj.id %}" style="color: #940e07"><b>{{ obj.title }}</b></a><small>     {{ obj.timestamp|timesince }} ago</small></h3>
+          <h6><b>Author: {{ obj.user.get_full_name }}</b></h6>
+    <p class="content-markdown">{{ obj.content  | linebreaks | truncatechars:150}}</p>
+    <p><a href="{% url "detail" id=obj.id %}" class="btn" style="background-color: #940e07; color: white" role="button">Read More</a></p>
+    </div>
+  </div>
+</div>
+    <hr/>
+</div>
+{% endfor %}
+
+
+                                <!-- PAGINATION STARTS-->
+
+<div class="row" style="font-size: 20px; padding: 25px 25px">
+        <div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page=1" style="color: #940e07">&laquo; first</a>
+            <a href="?page={{ object_list.previous_page_number }}" style="color: #940e07">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}" style="color: #940e07">next</a>
+            <a href="?page={{ object_list.paginator.num_pages }}" style="color: #940e07">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+                                <!-- PAGINATION ENDS-->
+
+
+        </div>
+           <div class="col-md-4">
+
+                <!--  FIRST CARD STARTS-->
+
+            <div class="card text-center" style="margin-bottom: 30px; background-color: #75ffa0 ">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="btn btn-outline-success my-2 my-sm-0" href="#" style="color: #940e07">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color: #940e07">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+      <h5 class="card-title"><b>The Revolution is here</b></h5>
+    <p class="card-text">I’ve always loved writing. When I was younger I worked for two different magazine publishers.</p>
+    <a href="#" class="btn btn-primary" style="background-color: #940e07">Go somewhere</a>
+  </div>
+</div>
+                <!-- JUMBOTRON STARTS-->
+
+
+               <div class="jumbotron" style="background-color: #44a3b6">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button" style="background-color: #940e07">Learn more</a>
+</div>
+
+
+                               <!-- CARD LISTS STARTS-->
+
+               <div class="card text-white bg-primary mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Primary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card text-white bg-secondary mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Secondary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card text-white bg-success mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Success card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card text-white bg-danger mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Danger card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card text-white bg-warning mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Warning card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card text-white bg-info mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Info card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card bg-light mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Light card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div class="card text-white bg-dark mb-3" style="max-width: 22rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Dark card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div></div>
+
+
+
+
+           </div></div></div>
+
+                        <!-- CONTENT LISTS ENDS-->
+
+    <!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5">
+
+    <div style="background-color: #08be00">
+      <div class="container">
+
+        <!-- Grid row-->
+        <div class="row py-4 d-flex align-items-center">
+
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+              <h6 class="mb-0"><b>Get connected with us on social networks!</b></h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+            <!-- Facebook -->
+            <a class="fb-ic">
+              <i class="fab fa-facebook-f white-text mr-4"> </i>
+            </a>
+            <!-- Twitter -->
+            <a class="tw-ic">
+              <i class="fab fa-twitter white-text mr-4"> </i>
+            </a>
+            <!-- Google +-->
+            <a class="gplus-ic">
+              <i class="fab fa-google-plus-g white-text mr-4"> </i>
+            </a>
+            <!--Linkedin -->
+            <a class="li-ic">
+              <i class="fab fa-linkedin-in white-text mr-4"> </i>
+            </a>
+            <!--Instagram-->
+            <a class="ins-ic">
+              <i class="fab fa-instagram white-text"> </i>
+            </a>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row-->
+
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+      <!-- Grid row -->
+      <div class="row mt-3 dark-grey-text">
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+          <!-- Content -->
+          <h6 class="text-uppercase font-weight-bold">Yordan Co</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit.</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Products</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a class="dark-grey-text" href="#!">Things You Need</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Awesome</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">SS Awesome</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">SS Awesome</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a class="dark-grey-text" href="#!">Your Account</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Become an Affiliate</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Shipping Rates</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Help</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Contact</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <i class="fas fa-home mr-3"></i> Kijito, NY 10012, TZ</p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i> info@example.com</p>
+          <p>
+            <i class="fas fa-phone mr-3"></i> + 255 756 567 883</p>
+          <p>
+            <i class="fas fa-print mr-3"></i> + 255 625 457 894</p>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3"; style="background-color: #630400"><b>© 2019 Copyright:</b>
+      <a class="dark-grey-text" href="https://yordanschools.com/"> yordanschools.com</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+{% endblock content %}
+
+{#    <div class="col-sm-6">#}
+{#    <a href="{% url "detail" id=obj.id %}">{{ obj.title }}</a><br/>#}
+{#    {{ obj.content | linebreaks | truncatechars:100}} <br/>#}
+{#    {{ obj.timestamp }}<br/>#}
+{#    {{ obj.updated }}<br/>#}
+{#    {{ obj.delete }}<br/>#}
+{#    </div>#}

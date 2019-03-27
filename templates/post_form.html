@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+    {% block head_extra %}
+{{ form.media }}
+{% endblock head_extra %}
+
+
+    {% block content %}
+       <div class="container-fluid" style="background-color: darkcyan; padding: 10%">
+           <div class="container border border-success" style="background-color: #50b6b6; padding: 2%">
+               <div class="col-sm-8 col-sm-offset-2">
+        <h1 style="color: #ff190c">Create / Edit Post Form</h1>
+
+<form method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" class="btn btn-default" value="Create Post" style="background-color: #cf140a"/>
+    </form>
+</div></div></div>
+{% endblock content %}
