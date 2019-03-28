@@ -13,7 +13,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import decouple
+from dj_database_url import config
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+ONLINE = decouple.config('ONLINE', default=True, cast=bool)
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6**jyb7f#&7ub%!$9@)*-h+-+05p0w@4c$%9531u=w6o7up*y-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['blog-yordan.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -80,12 +85,18 @@ WSGI_APPLICATION = 'blog_yordan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if ONLINE:
+    DATABASES = {
+        'default': config(default=config('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        }
+    }
 
 
 # Password validation
