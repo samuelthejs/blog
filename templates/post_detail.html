@@ -28,7 +28,7 @@
     {% if instance.image %}
     <img src="{{ instance.image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 4px; padding-top: 2%"/><hr/>
         {% endif %}
-    <h2 style="color: #940e07"><b> {{ title }} </b> <small>   {{ instance.timestamp }}</small></h2>
+    <h4 style="color: #940e07"><b> {{ title }} </b> <small>   {{ instance.timestamp }}</small></h4>
     {% if instance.user.get_full_name %}
 <h6><b>Author: {{ instance.user.get_full_name }}</b></h6>
     {% endif %}
@@ -63,7 +63,7 @@
 {##}
 </p>
     <div class="row">
-        <div class="col-sm-12" style="font-size: 16px; color: black" >
+        <div class="col-sm-12" style="font-size: 18px; color: black" >
             <div class="content-markdown">  {{ instance.content | linebreaks }}</div>  <br/><hr/>
 
     <div class="fb-comments" data-href="{{ request.build_absolute_uri}}" data-numposts="5"></div>
