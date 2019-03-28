@@ -28,7 +28,7 @@ ONLINE = decouple.config('ONLINE', default=True, cast=bool)
 SECRET_KEY = '6**jyb7f#&7ub%!$9@)*-h+-+05p0w@4c$%9531u=w6o7up*y-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['blog-yordan.herokuapp.com', 'localhost', '127.0.0.1']
 
