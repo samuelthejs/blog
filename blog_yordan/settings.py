@@ -18,7 +18,7 @@ from dj_database_url import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ONLINE = decouple.config('ONLINE', default=True, cast=bool)
+ONLINE = decouple.config('ONLINE', default=False, cast=bool)
 
 
 # Quick-start development settings - unsuitable for production

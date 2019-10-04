@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from  .forms import PostForm
+from .forms import PostForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render
